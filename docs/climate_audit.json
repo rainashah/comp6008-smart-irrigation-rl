@@ -1,0 +1,903 @@
+{
+  "period": [
+    "2005-01-01",
+    "2025-12-31"
+  ],
+  "source_code_definitions": {
+    "0": "Official station observation",
+    "13": "Deaccumulated using nearby station",
+    "15": "Deaccumulated using interpolated data",
+    "23": "Nearby station observation",
+    "25": "Interpolated daily observations",
+    "26": "Derived",
+    "35": "Anomaly interpolation",
+    "42": "Satellite radiation estimate",
+    "75": "Long-term daily average interpolation"
+  },
+  "results": {
+    "kununurra_002038": {
+      "rows": 7670,
+      "first_date": "2005-01-01",
+      "last_date": "2025-12-31",
+      "expected_rows": 7670,
+      "missing_dates": [],
+      "out_of_range_dates": [],
+      "duplicate_dates": 0,
+      "chronological": true,
+      "malformed_line_numbers": [],
+      "sha256": "6c9417e5a2b01441229016f6bea6380cefa4146077addc2c23cd044a9b2ce8ae",
+      "source_counts": {
+        "tmax_source": {
+          "25": 7670
+        },
+        "tmin_source": {
+          "25": 7670
+        },
+        "rain_source": {
+          "25": 7670
+        },
+        "radiation_source": {
+          "42": 7652,
+          "25": 18
+        },
+        "vapour_pressure_source": {
+          "25": 7670
+        }
+      },
+      "official_observation_percent": {
+        "tmax_source": 0.0,
+        "tmin_source": 0.0,
+        "rain_source": 0.0,
+        "radiation_source": 0.0,
+        "vapour_pressure_source": 0.0
+      },
+      "longest_nonobserved_run_days": {
+        "tmax_source": 7670,
+        "tmin_source": 7670,
+        "rain_source": 7670,
+        "radiation_source": 7670,
+        "vapour_pressure_source": 7670
+      },
+      "ranges": {
+        "tmax_c": {
+          "min": 16.7,
+          "max": 44.6,
+          "mean": 35.22715775749674
+        },
+        "tmin_c": {
+          "min": 6.4,
+          "max": 30.0,
+          "mean": 20.974250325945242
+        },
+        "rain_mm": {
+          "min": 0.0,
+          "max": 165.6,
+          "mean": 2.5659322033898304
+        },
+        "radiation_mj_m2": {
+          "min": 1.0,
+          "max": 31.7,
+          "mean": 22.233650586701433
+        },
+        "vapour_pressure_hpa": {
+          "min": 0.4,
+          "max": 38.1,
+          "mean": 20.028474576271186
+        },
+        "eto_mm": {
+          "min": 0.7,
+          "max": 8.9,
+          "mean": 5.93890482398957
+        }
+      },
+      "checks": {
+        "nonfinite_values": 0,
+        "sentinel_values": 0,
+        "tmin_exceeds_tmax": 0,
+        "negative_rain_mm": 0,
+        "negative_eto_mm": 0,
+        "negative_radiation_mj_m2": 0,
+        "negative_vapour_pressure_hpa": 0,
+        "long_term_average_source_values": 0
+      },
+      "annual": [
+        {
+          "year": 2005,
+          "days": 365,
+          "rain_mm": 933.5,
+          "eto_mm": 2221.7,
+          "rain_source_observed_pct": 0.0,
+          "tmax_source_observed_pct": 0.0,
+          "tmin_source_observed_pct": 0.0
+        },
+        {
+          "year": 2006,
+          "days": 365,
+          "rain_mm": 1021.1,
+          "eto_mm": 2098.3,
+          "rain_source_observed_pct": 0.0,
+          "tmax_source_observed_pct": 0.0,
+          "tmin_source_observed_pct": 0.0
+        },
+        {
+          "year": 2007,
+          "days": 365,
+          "rain_mm": 872.8,
+          "eto_mm": 2096.8,
+          "rain_source_observed_pct": 0.0,
+          "tmax_source_observed_pct": 0.0,
+          "tmin_source_observed_pct": 0.0
+        },
+        {
+          "year": 2008,
+          "days": 366,
+          "rain_mm": 1155.0,
+          "eto_mm": 2134.9,
+          "rain_source_observed_pct": 0.0,
+          "tmax_source_observed_pct": 0.0,
+          "tmin_source_observed_pct": 0.0
+        },
+        {
+          "year": 2009,
+          "days": 365,
+          "rain_mm": 811.8,
+          "eto_mm": 2186.9,
+          "rain_source_observed_pct": 0.0,
+          "tmax_source_observed_pct": 0.0,
+          "tmin_source_observed_pct": 0.0
+        },
+        {
+          "year": 2010,
+          "days": 365,
+          "rain_mm": 978.6,
+          "eto_mm": 2088.7,
+          "rain_source_observed_pct": 0.0,
+          "tmax_source_observed_pct": 0.0,
+          "tmin_source_observed_pct": 0.0
+        },
+        {
+          "year": 2011,
+          "days": 365,
+          "rain_mm": 1278.7,
+          "eto_mm": 1971.5,
+          "rain_source_observed_pct": 0.0,
+          "tmax_source_observed_pct": 0.0,
+          "tmin_source_observed_pct": 0.0
+        },
+        {
+          "year": 2012,
+          "days": 366,
+          "rain_mm": 908.1,
+          "eto_mm": 2223.4,
+          "rain_source_observed_pct": 0.0,
+          "tmax_source_observed_pct": 0.0,
+          "tmin_source_observed_pct": 0.0
+        },
+        {
+          "year": 2013,
+          "days": 365,
+          "rain_mm": 813.2,
+          "eto_mm": 2225.2,
+          "rain_source_observed_pct": 0.0,
+          "tmax_source_observed_pct": 0.0,
+          "tmin_source_observed_pct": 0.0
+        },
+        {
+          "year": 2014,
+          "days": 365,
+          "rain_mm": 1240.5,
+          "eto_mm": 2175.7,
+          "rain_source_observed_pct": 0.0,
+          "tmax_source_observed_pct": 0.0,
+          "tmin_source_observed_pct": 0.0
+        },
+        {
+          "year": 2015,
+          "days": 365,
+          "rain_mm": 703.0,
+          "eto_mm": 2203.8,
+          "rain_source_observed_pct": 0.0,
+          "tmax_source_observed_pct": 0.0,
+          "tmin_source_observed_pct": 0.0
+        },
+        {
+          "year": 2016,
+          "days": 366,
+          "rain_mm": 785.8,
+          "eto_mm": 2205.2,
+          "rain_source_observed_pct": 0.0,
+          "tmax_source_observed_pct": 0.0,
+          "tmin_source_observed_pct": 0.0
+        },
+        {
+          "year": 2017,
+          "days": 365,
+          "rain_mm": 1259.9,
+          "eto_mm": 2147.1,
+          "rain_source_observed_pct": 0.0,
+          "tmax_source_observed_pct": 0.0,
+          "tmin_source_observed_pct": 0.0
+        },
+        {
+          "year": 2018,
+          "days": 365,
+          "rain_mm": 725.7,
+          "eto_mm": 2227.1,
+          "rain_source_observed_pct": 0.0,
+          "tmax_source_observed_pct": 0.0,
+          "tmin_source_observed_pct": 0.0
+        },
+        {
+          "year": 2019,
+          "days": 365,
+          "rain_mm": 451.2,
+          "eto_mm": 2334.9,
+          "rain_source_observed_pct": 0.0,
+          "tmax_source_observed_pct": 0.0,
+          "tmin_source_observed_pct": 0.0
+        },
+        {
+          "year": 2020,
+          "days": 366,
+          "rain_mm": 1079.7,
+          "eto_mm": 2219.2,
+          "rain_source_observed_pct": 0.0,
+          "tmax_source_observed_pct": 0.0,
+          "tmin_source_observed_pct": 0.0
+        },
+        {
+          "year": 2021,
+          "days": 365,
+          "rain_mm": 722.1,
+          "eto_mm": 2222.1,
+          "rain_source_observed_pct": 0.0,
+          "tmax_source_observed_pct": 0.0,
+          "tmin_source_observed_pct": 0.0
+        },
+        {
+          "year": 2022,
+          "days": 365,
+          "rain_mm": 1038.5,
+          "eto_mm": 2158.1,
+          "rain_source_observed_pct": 0.0,
+          "tmax_source_observed_pct": 0.0,
+          "tmin_source_observed_pct": 0.0
+        },
+        {
+          "year": 2023,
+          "days": 365,
+          "rain_mm": 803.9,
+          "eto_mm": 2169.5,
+          "rain_source_observed_pct": 0.0,
+          "tmax_source_observed_pct": 0.0,
+          "tmin_source_observed_pct": 0.0
+        },
+        {
+          "year": 2024,
+          "days": 366,
+          "rain_mm": 1286.5,
+          "eto_mm": 2099.7,
+          "rain_source_observed_pct": 0.0,
+          "tmax_source_observed_pct": 0.0,
+          "tmin_source_observed_pct": 0.0
+        },
+        {
+          "year": 2025,
+          "days": 365,
+          "rain_mm": 811.1,
+          "eto_mm": 2141.6,
+          "rain_source_observed_pct": 0.0,
+          "tmax_source_observed_pct": 0.0,
+          "tmin_source_observed_pct": 0.0
+        }
+      ],
+      "seasonal_window_audit": {
+        "nov_mar": {
+          "days": 3176,
+          "rain_source_observed_pct": 0.0,
+          "tmax_source_observed_pct": 0.0,
+          "tmin_source_observed_pct": 0.0
+        },
+        "apr_sep": {
+          "days": 3843,
+          "rain_source_observed_pct": 0.0,
+          "tmax_source_observed_pct": 0.0,
+          "tmin_source_observed_pct": 0.0
+        }
+      }
+    },
+    "kununurra_aero_002056": {
+      "rows": 7670,
+      "first_date": "2005-01-01",
+      "last_date": "2025-12-31",
+      "expected_rows": 7670,
+      "missing_dates": [],
+      "out_of_range_dates": [],
+      "duplicate_dates": 0,
+      "chronological": true,
+      "malformed_line_numbers": [],
+      "sha256": "8854f6f6881308f696caeb901de19866f76f4b40da943c771b375d95af8f1c93",
+      "source_counts": {
+        "tmax_source": {
+          "0": 7562,
+          "25": 108
+        },
+        "tmin_source": {
+          "0": 7568,
+          "25": 102
+        },
+        "rain_source": {
+          "0": 7493,
+          "25": 165,
+          "15": 12
+        },
+        "radiation_source": {
+          "42": 7652,
+          "25": 18
+        },
+        "vapour_pressure_source": {
+          "0": 7493,
+          "25": 177
+        }
+      },
+      "official_observation_percent": {
+        "tmax_source": 98.5919,
+        "tmin_source": 98.6701,
+        "rain_source": 97.6923,
+        "radiation_source": 0.0,
+        "vapour_pressure_source": 97.6923
+      },
+      "longest_nonobserved_run_days": {
+        "tmax_source": 12,
+        "tmin_source": 12,
+        "rain_source": 12,
+        "radiation_source": 7670,
+        "vapour_pressure_source": 101
+      },
+      "ranges": {
+        "tmax_c": {
+          "min": 16.7,
+          "max": 44.7,
+          "mean": 35.203194263363756
+        },
+        "tmin_c": {
+          "min": 6.0,
+          "max": 30.3,
+          "mean": 20.761590612777052
+        },
+        "rain_mm": {
+          "min": 0.0,
+          "max": 165.8,
+          "mean": 2.6117340286831814
+        },
+        "radiation_mj_m2": {
+          "min": 1.0,
+          "max": 31.8,
+          "mean": 22.2735332464146
+        },
+        "vapour_pressure_hpa": {
+          "min": 0.3,
+          "max": 39.1,
+          "mean": 20.05354628422425
+        },
+        "eto_mm": {
+          "min": 0.7,
+          "max": 8.9,
+          "mean": 5.927601043024771
+        }
+      },
+      "checks": {
+        "nonfinite_values": 0,
+        "sentinel_values": 0,
+        "tmin_exceeds_tmax": 0,
+        "negative_rain_mm": 0,
+        "negative_eto_mm": 0,
+        "negative_radiation_mj_m2": 0,
+        "negative_vapour_pressure_hpa": 0,
+        "long_term_average_source_values": 0
+      },
+      "annual": [
+        {
+          "year": 2005,
+          "days": 365,
+          "rain_mm": 871.2,
+          "eto_mm": 2223.8,
+          "rain_source_observed_pct": 100.0,
+          "tmax_source_observed_pct": 99.45,
+          "tmin_source_observed_pct": 100.0
+        },
+        {
+          "year": 2006,
+          "days": 365,
+          "rain_mm": 1042.8,
+          "eto_mm": 2104.1,
+          "rain_source_observed_pct": 98.08,
+          "tmax_source_observed_pct": 96.44,
+          "tmin_source_observed_pct": 96.16
+        },
+        {
+          "year": 2007,
+          "days": 365,
+          "rain_mm": 875.4,
+          "eto_mm": 2100.4,
+          "rain_source_observed_pct": 100.0,
+          "tmax_source_observed_pct": 97.26,
+          "tmin_source_observed_pct": 96.99
+        },
+        {
+          "year": 2008,
+          "days": 366,
+          "rain_mm": 1157.7,
+          "eto_mm": 2134.3,
+          "rain_source_observed_pct": 99.18,
+          "tmax_source_observed_pct": 98.36,
+          "tmin_source_observed_pct": 98.09
+        },
+        {
+          "year": 2009,
+          "days": 365,
+          "rain_mm": 822.9,
+          "eto_mm": 2191.5,
+          "rain_source_observed_pct": 98.9,
+          "tmax_source_observed_pct": 96.44,
+          "tmin_source_observed_pct": 95.89
+        },
+        {
+          "year": 2010,
+          "days": 365,
+          "rain_mm": 994.7,
+          "eto_mm": 2094.6,
+          "rain_source_observed_pct": 98.9,
+          "tmax_source_observed_pct": 97.81,
+          "tmin_source_observed_pct": 96.71
+        },
+        {
+          "year": 2011,
+          "days": 365,
+          "rain_mm": 1303.0,
+          "eto_mm": 1971.9,
+          "rain_source_observed_pct": 95.34,
+          "tmax_source_observed_pct": 96.71,
+          "tmin_source_observed_pct": 96.71
+        },
+        {
+          "year": 2012,
+          "days": 366,
+          "rain_mm": 984.2,
+          "eto_mm": 2225.0,
+          "rain_source_observed_pct": 99.45,
+          "tmax_source_observed_pct": 98.91,
+          "tmin_source_observed_pct": 98.91
+        },
+        {
+          "year": 2013,
+          "days": 365,
+          "rain_mm": 825.6,
+          "eto_mm": 2227.4,
+          "rain_source_observed_pct": 99.18,
+          "tmax_source_observed_pct": 98.36,
+          "tmin_source_observed_pct": 98.63
+        },
+        {
+          "year": 2014,
+          "days": 365,
+          "rain_mm": 1285.6,
+          "eto_mm": 2179.7,
+          "rain_source_observed_pct": 91.51,
+          "tmax_source_observed_pct": 99.45,
+          "tmin_source_observed_pct": 99.45
+        },
+        {
+          "year": 2015,
+          "days": 365,
+          "rain_mm": 695.1,
+          "eto_mm": 2198.8,
+          "rain_source_observed_pct": 97.81,
+          "tmax_source_observed_pct": 98.9,
+          "tmin_source_observed_pct": 99.18
+        },
+        {
+          "year": 2016,
+          "days": 366,
+          "rain_mm": 768.7,
+          "eto_mm": 2199.5,
+          "rain_source_observed_pct": 99.18,
+          "tmax_source_observed_pct": 100.0,
+          "tmin_source_observed_pct": 99.73
+        },
+        {
+          "year": 2017,
+          "days": 365,
+          "rain_mm": 1272.9,
+          "eto_mm": 2142.8,
+          "rain_source_observed_pct": 98.36,
+          "tmax_source_observed_pct": 100.0,
+          "tmin_source_observed_pct": 100.0
+        },
+        {
+          "year": 2018,
+          "days": 365,
+          "rain_mm": 734.5,
+          "eto_mm": 2212.9,
+          "rain_source_observed_pct": 98.36,
+          "tmax_source_observed_pct": 99.18,
+          "tmin_source_observed_pct": 100.0
+        },
+        {
+          "year": 2019,
+          "days": 365,
+          "rain_mm": 483.5,
+          "eto_mm": 2322.0,
+          "rain_source_observed_pct": 96.44,
+          "tmax_source_observed_pct": 99.45,
+          "tmin_source_observed_pct": 99.73
+        },
+        {
+          "year": 2020,
+          "days": 366,
+          "rain_mm": 1118.0,
+          "eto_mm": 2205.1,
+          "rain_source_observed_pct": 98.09,
+          "tmax_source_observed_pct": 99.73,
+          "tmin_source_observed_pct": 100.0
+        },
+        {
+          "year": 2021,
+          "days": 365,
+          "rain_mm": 763.2,
+          "eto_mm": 2202.4,
+          "rain_source_observed_pct": 95.07,
+          "tmax_source_observed_pct": 97.81,
+          "tmin_source_observed_pct": 98.63
+        },
+        {
+          "year": 2022,
+          "days": 365,
+          "rain_mm": 1043.7,
+          "eto_mm": 2143.8,
+          "rain_source_observed_pct": 97.81,
+          "tmax_source_observed_pct": 99.73,
+          "tmin_source_observed_pct": 100.0
+        },
+        {
+          "year": 2023,
+          "days": 365,
+          "rain_mm": 856.4,
+          "eto_mm": 2159.0,
+          "rain_source_observed_pct": 95.34,
+          "tmax_source_observed_pct": 99.45,
+          "tmin_source_observed_pct": 99.73
+        },
+        {
+          "year": 2024,
+          "days": 366,
+          "rain_mm": 1338.0,
+          "eto_mm": 2089.1,
+          "rain_source_observed_pct": 96.45,
+          "tmax_source_observed_pct": 98.91,
+          "tmin_source_observed_pct": 100.0
+        },
+        {
+          "year": 2025,
+          "days": 365,
+          "rain_mm": 794.9,
+          "eto_mm": 2136.6,
+          "rain_source_observed_pct": 98.08,
+          "tmax_source_observed_pct": 98.08,
+          "tmin_source_observed_pct": 97.53
+        }
+      ],
+      "seasonal_window_audit": {
+        "nov_mar": {
+          "days": 3176,
+          "rain_source_observed_pct": 97.32,
+          "tmax_source_observed_pct": 98.05,
+          "tmin_source_observed_pct": 98.08
+        },
+        "apr_sep": {
+          "days": 3843,
+          "rain_source_observed_pct": 97.76,
+          "tmax_source_observed_pct": 98.99,
+          "tmin_source_observed_pct": 99.09
+        }
+      }
+    },
+    "kyabram_080091": {
+      "rows": 7670,
+      "first_date": "2005-01-01",
+      "last_date": "2025-12-31",
+      "expected_rows": 7670,
+      "missing_dates": [],
+      "out_of_range_dates": [],
+      "duplicate_dates": 0,
+      "chronological": true,
+      "malformed_line_numbers": [],
+      "sha256": "931b55206df206bbe515a297ddf9cf09fb97b798002be89d0ea7fb29d2ad4e03",
+      "source_counts": {
+        "tmax_source": {
+          "0": 7626,
+          "25": 44
+        },
+        "tmin_source": {
+          "0": 7621,
+          "25": 49
+        },
+        "rain_source": {
+          "0": 7562,
+          "15": 23,
+          "25": 85
+        },
+        "radiation_source": {
+          "42": 7639,
+          "25": 18,
+          "75": 13
+        },
+        "vapour_pressure_source": {
+          "0": 7621,
+          "25": 49
+        }
+      },
+      "official_observation_percent": {
+        "tmax_source": 99.4263,
+        "tmin_source": 99.3611,
+        "rain_source": 98.5919,
+        "radiation_source": 0.0,
+        "vapour_pressure_source": 99.3611
+      },
+      "longest_nonobserved_run_days": {
+        "tmax_source": 9,
+        "tmin_source": 12,
+        "rain_source": 30,
+        "radiation_source": 7670,
+        "vapour_pressure_source": 10
+      },
+      "ranges": {
+        "tmax_c": {
+          "min": 6.1,
+          "max": 47.1,
+          "mean": 22.728187744458932
+        },
+        "tmin_c": {
+          "min": -4.5,
+          "max": 29.1,
+          "mean": 9.096675358539766
+        },
+        "rain_mm": {
+          "min": 0.0,
+          "max": 87.6,
+          "mean": 1.215645371577575
+        },
+        "radiation_mj_m2": {
+          "min": 1.0,
+          "max": 35.0,
+          "mean": 17.242020860495437
+        },
+        "vapour_pressure_hpa": {
+          "min": 5.0,
+          "max": 29.0,
+          "mean": 11.89310299869622
+        },
+        "eto_mm": {
+          "min": 0.4,
+          "max": 9.7,
+          "mean": 3.4736375488917863
+        }
+      },
+      "checks": {
+        "nonfinite_values": 0,
+        "sentinel_values": 0,
+        "tmin_exceeds_tmax": 0,
+        "negative_rain_mm": 0,
+        "negative_eto_mm": 0,
+        "negative_radiation_mj_m2": 0,
+        "negative_vapour_pressure_hpa": 0,
+        "long_term_average_source_values": 13
+      },
+      "annual": [
+        {
+          "year": 2005,
+          "days": 365,
+          "rain_mm": 488.4,
+          "eto_mm": 1248.3,
+          "rain_source_observed_pct": 99.45,
+          "tmax_source_observed_pct": 99.45,
+          "tmin_source_observed_pct": 99.45
+        },
+        {
+          "year": 2006,
+          "days": 365,
+          "rain_mm": 228.7,
+          "eto_mm": 1374.8,
+          "rain_source_observed_pct": 100.0,
+          "tmax_source_observed_pct": 96.44,
+          "tmin_source_observed_pct": 96.44
+        },
+        {
+          "year": 2007,
+          "days": 365,
+          "rain_mm": 356.2,
+          "eto_mm": 1383.5,
+          "rain_source_observed_pct": 100.0,
+          "tmax_source_observed_pct": 99.18,
+          "tmin_source_observed_pct": 99.18
+        },
+        {
+          "year": 2008,
+          "days": 366,
+          "rain_mm": 449.4,
+          "eto_mm": 1297.0,
+          "rain_source_observed_pct": 100.0,
+          "tmax_source_observed_pct": 99.73,
+          "tmin_source_observed_pct": 100.0
+        },
+        {
+          "year": 2009,
+          "days": 365,
+          "rain_mm": 314.4,
+          "eto_mm": 1397.7,
+          "rain_source_observed_pct": 90.14,
+          "tmax_source_observed_pct": 99.45,
+          "tmin_source_observed_pct": 99.45
+        },
+        {
+          "year": 2010,
+          "days": 365,
+          "rain_mm": 662.4,
+          "eto_mm": 1204.6,
+          "rain_source_observed_pct": 99.18,
+          "tmax_source_observed_pct": 100.0,
+          "tmin_source_observed_pct": 100.0
+        },
+        {
+          "year": 2011,
+          "days": 365,
+          "rain_mm": 656.8,
+          "eto_mm": 1199.8,
+          "rain_source_observed_pct": 100.0,
+          "tmax_source_observed_pct": 100.0,
+          "tmin_source_observed_pct": 100.0
+        },
+        {
+          "year": 2012,
+          "days": 366,
+          "rain_mm": 505.6,
+          "eto_mm": 1246.3,
+          "rain_source_observed_pct": 99.73,
+          "tmax_source_observed_pct": 99.73,
+          "tmin_source_observed_pct": 99.73
+        },
+        {
+          "year": 2013,
+          "days": 365,
+          "rain_mm": 370.0,
+          "eto_mm": 1305.9,
+          "rain_source_observed_pct": 100.0,
+          "tmax_source_observed_pct": 100.0,
+          "tmin_source_observed_pct": 100.0
+        },
+        {
+          "year": 2014,
+          "days": 365,
+          "rain_mm": 420.4,
+          "eto_mm": 1317.7,
+          "rain_source_observed_pct": 100.0,
+          "tmax_source_observed_pct": 100.0,
+          "tmin_source_observed_pct": 100.0
+        },
+        {
+          "year": 2015,
+          "days": 365,
+          "rain_mm": 285.6,
+          "eto_mm": 1323.1,
+          "rain_source_observed_pct": 100.0,
+          "tmax_source_observed_pct": 100.0,
+          "tmin_source_observed_pct": 100.0
+        },
+        {
+          "year": 2016,
+          "days": 366,
+          "rain_mm": 627.0,
+          "eto_mm": 1208.8,
+          "rain_source_observed_pct": 100.0,
+          "tmax_source_observed_pct": 100.0,
+          "tmin_source_observed_pct": 100.0
+        },
+        {
+          "year": 2017,
+          "days": 365,
+          "rain_mm": 523.1,
+          "eto_mm": 1252.7,
+          "rain_source_observed_pct": 96.99,
+          "tmax_source_observed_pct": 97.53,
+          "tmin_source_observed_pct": 97.26
+        },
+        {
+          "year": 2018,
+          "days": 365,
+          "rain_mm": 309.6,
+          "eto_mm": 1313.8,
+          "rain_source_observed_pct": 100.0,
+          "tmax_source_observed_pct": 100.0,
+          "tmin_source_observed_pct": 99.73
+        },
+        {
+          "year": 2019,
+          "days": 365,
+          "rain_mm": 255.6,
+          "eto_mm": 1330.2,
+          "rain_source_observed_pct": 91.23,
+          "tmax_source_observed_pct": 100.0,
+          "tmin_source_observed_pct": 100.0
+        },
+        {
+          "year": 2020,
+          "days": 366,
+          "rain_mm": 493.7,
+          "eto_mm": 1212.6,
+          "rain_source_observed_pct": 97.27,
+          "tmax_source_observed_pct": 97.54,
+          "tmin_source_observed_pct": 96.45
+        },
+        {
+          "year": 2021,
+          "days": 365,
+          "rain_mm": 436.6,
+          "eto_mm": 1156.4,
+          "rain_source_observed_pct": 99.73,
+          "tmax_source_observed_pct": 99.73,
+          "tmin_source_observed_pct": 100.0
+        },
+        {
+          "year": 2022,
+          "days": 365,
+          "rain_mm": 684.2,
+          "eto_mm": 1087.4,
+          "rain_source_observed_pct": 100.0,
+          "tmax_source_observed_pct": 100.0,
+          "tmin_source_observed_pct": 100.0
+        },
+        {
+          "year": 2023,
+          "days": 365,
+          "rain_mm": 477.2,
+          "eto_mm": 1193.2,
+          "rain_source_observed_pct": 100.0,
+          "tmax_source_observed_pct": 99.73,
+          "tmin_source_observed_pct": 99.73
+        },
+        {
+          "year": 2024,
+          "days": 366,
+          "rain_mm": 466.3,
+          "eto_mm": 1276.2,
+          "rain_source_observed_pct": 97.27,
+          "tmax_source_observed_pct": 99.45,
+          "tmin_source_observed_pct": 99.18
+        },
+        {
+          "year": 2025,
+          "days": 365,
+          "rain_mm": 312.8,
+          "eto_mm": 1312.8,
+          "rain_source_observed_pct": 99.45,
+          "tmax_source_observed_pct": 100.0,
+          "tmin_source_observed_pct": 100.0
+        }
+      ],
+      "seasonal_window_audit": {
+        "nov_mar": {
+          "days": 3176,
+          "rain_source_observed_pct": 98.11,
+          "tmax_source_observed_pct": 99.62,
+          "tmin_source_observed_pct": 99.5
+        },
+        "apr_sep": {
+          "days": 3843,
+          "rain_source_observed_pct": 98.88,
+          "tmax_source_observed_pct": 99.22,
+          "tmin_source_observed_pct": 99.19
+        }
+      }
+    }
+  }
+}
