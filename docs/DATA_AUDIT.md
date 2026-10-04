@@ -28,6 +28,14 @@ Audited on 4 October 2026. Period: **1 January 2005–31 December 2025**.
 
 Kyabram remains the easier starting point because of the identified local maize and FAO-56 research. **Kununurra Aero is a defensible WA option; climate completeness does not justify rejecting it.** The final location has not been locked.
 
+### Local scientific support for Kyabram
+
+- Greenwood, Mundy and Kelly (2008), [“On-farm measurement of the water use and productivity of maize”](https://doi.org/10.1071/EA06094), measured three commercial irrigated maize crops in northern Victoria and compared measured soil-water changes with a daily FAO-56 balance.
+- Greenwood, Lawson and Kelly (2009), [“The water balance of irrigated forages in northern Victoria, Australia”](https://doi.org/10.1016/j.agwat.2008.11.005), provides peer-reviewed regional support for a daily soil-water-balance modelling approach.
+- [Agriculture Victoria’s regional irrigation summary](https://agriculture.vic.gov.au/farm-management/water/irrigation/variation-in-irrigation-requirements-of-forages-northvic) reports that maize water-use experiments near Kyabram were used to check modelled estimates.
+
+These sources support the crop and modelling approach for a Kyabram simulation. They do not validate our implementation or establish the soil and crop parameters of a specific field.
+
 Before building the shared environment, select an agricultural field coordinate and verify native-resolution soil parameters, root depth, drainage assumptions, local growing-season dates and crop coefficients. Preserve climate source flags and keep whole seasons together in training, validation and test splits.
 
 ## Data and reproduction
