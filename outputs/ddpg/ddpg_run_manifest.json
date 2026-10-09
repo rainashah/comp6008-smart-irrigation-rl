@@ -1,0 +1,45 @@
+{
+  "configuration_fingerprint": "7fc3978e1036c4192871625454e78e071d739b3e01762ebbe99108120866f282",
+  "data_sha256": "ce6d02d87ea7cb980f61f78bdd288d6ad035744042dae1eb3e43f0facaa54e08",
+  "selected_configuration": {
+    "learning_rate": 0.0003,
+    "exploration_std": 0.1,
+    "selected_from": "validation only"
+  },
+  "tuning": {
+    "configurations": 4,
+    "seeds": [101, 202],
+    "interactions_per_run": 30000,
+    "updates_per_run": 28500,
+    "completed_runs": 8,
+    "failed_runs": 0
+  },
+  "final": {
+    "seeds": [11, 22, 33, 44, 55],
+    "interactions_per_run": 100000,
+    "updates_per_run": 98500,
+    "completed_runs": 5,
+    "failed_runs": 0,
+    "runtime_seconds": {
+      "11": 868.724,
+      "22": 842.323,
+      "33": 829.959,
+      "44": 896.382,
+      "55": 953.634
+    }
+  },
+  "reward_sensitivity": {
+    "shortage_weights": [5, 20],
+    "seeds": [101, 202],
+    "interactions_per_run": 30000,
+    "updates_per_run": 28500,
+    "completed_runs": 4,
+    "failed_runs": 0
+  },
+  "robustness": {
+    "final_seeds": 5,
+    "scenarios": 9,
+    "test_seasons": [2021, 2022, 2023, 2024],
+    "result_rows": 180
+  }
+}

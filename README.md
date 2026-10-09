@@ -10,7 +10,8 @@ The controller selects a daily irrigation depth from **0–20 mm**. A soil-water
 - Historical climate and soil inputs downloaded and screened.
 - Shared Gymnasium environment implemented in the group notebook.
 - Environment validated for observation shape, action bounds, weather timing, water balance and 150-day termination.
-- DDPG, TD3 and SAC implementations are the next development stage.
+- DDPG implementation, validation-only tuning, five-seed final testing, reward sensitivity and robustness experiments are complete.
+- TD3 and SAC implementation and matching experiments remain to be completed by their assigned members.
 
 The climate inputs are real historical observations or SILO interpolations. Soil water, irrigation decisions and crop response are simulated. The reference coordinate represents a virtual field, not a verified commercial paddock.
 
@@ -26,13 +27,19 @@ The climate inputs are real historical observations or SILO interpolations. Soil
 │   ├── FIXED_EXPERIMENT_SETTINGS.md
 │   ├── PRACTICAL_CODE_REUSE.md
 │   └── PROJECT_OBJECTIVES.md
-└── notebooks/
-    └── 00_shared_template.ipynb
+├── notebooks/
+│   ├── 00_shared_template.ipynb
+│   └── 01_ddpg.ipynb
+└── outputs/
+    └── ddpg/
+        └── DDPG_RESULTS_SUMMARY.md
 ```
 
 ## Start here
 
 Open [`notebooks/00_shared_template.ipynb`](notebooks/00_shared_template.ipynb) in Google Colab or Jupyter.
+
+Raina's completed executed DDPG notebook is [`notebooks/01_ddpg.ipynb`](notebooks/01_ddpg.ipynb). Its concise results and limitations are in [`outputs/ddpg/DDPG_RESULTS_SUMMARY.md`](outputs/ddpg/DDPG_RESULTS_SUMMARY.md).
 
 The notebook contains:
 
@@ -58,6 +65,10 @@ notebooks/03_sac.ipynb
 Each member should implement only their assigned agent section. The environment, observations, reward, data splits, shared network size, training budgets and evaluation rules must remain identical across agents. Proposed shared-setting changes should be agreed and recorded before final testing.
 
 After the three agents pass short integration runs, merge them into one final comparison notebook for tuning, five-seed experiments, held-out testing and robustness evaluation.
+
+## Current DDPG result
+
+Validation-only tuning selected a learning rate of `0.0003` and exploration standard deviation of `0.1`. Across five final seeds and the held-out 2021–2024 seasons, DDPG achieved a mean discounted return of **-21.041 ± 0.435**, compared with **-21.488** for the fixed threshold controller. DDPG used 14.05 mm less irrigation on average and reduced dry-day violations, but produced 5.91 mm more drainage. This is a result for the declared simulator, not evidence of field superiority.
 
 ## Experiment summary
 
