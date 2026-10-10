@@ -41,7 +41,7 @@ The climate inputs are real historical observations or SILO interpolations. Soil
 
 Open [`notebooks/00_shared_template.ipynb`](notebooks/00_shared_template.ipynb) in Google Colab or Jupyter.
 
-Raina's completed executed DDPG notebook is [`notebooks/01_ddpg.ipynb`](notebooks/01_ddpg.ipynb). Its concise results and limitations are in [`outputs/ddpg/DDPG_RESULTS_SUMMARY.md`](outputs/ddpg/DDPG_RESULTS_SUMMARY.md).
+Raina's completed Colab-executed DDPG notebook is [`notebooks/01_ddpg.ipynb`](notebooks/01_ddpg.ipynb). Its concise results and limitations are in [`outputs/ddpg/DDPG_RESULTS_SUMMARY.md`](outputs/ddpg/DDPG_RESULTS_SUMMARY.md).
 
 The notebook contains:
 
@@ -85,7 +85,7 @@ After the three agents pass short integration runs, merge them into one final co
 
 ## Current DDPG result
 
-Validation-only tuning selected a learning rate of `0.0003` and exploration standard deviation of `0.1`. Across five final seeds and the held-out 2021–2024 seasons, DDPG achieved a mean discounted return of **-21.041 ± 0.435**, compared with **-21.488** for the fixed threshold controller. DDPG used 14.05 mm less irrigation on average and reduced dry-day violations, but produced 5.91 mm more drainage. This is a result for the declared simulator, not evidence of field superiority.
+Validation-only tuning selected a learning rate of `0.0003` and exploration standard deviation of `0.1`. Across five final seeds and the held-out 2021–2024 seasons, DDPG achieved a mean discounted return of **-21.064 ± 0.316**, compared with **-21.488** for the fixed threshold controller. DDPG used 13.13 mm less irrigation on average and reduced dry-day violations, but produced 5.81 mm more drainage. This is a result for the declared simulator, not evidence of field superiority.
 
 ## Experiment summary
 

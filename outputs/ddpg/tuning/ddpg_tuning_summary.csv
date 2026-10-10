@@ -1,5 +1,5 @@
 configuration_index,configuration,selection_score,mean_irrigation_mm,valid
-2,"{'learning_rate': 0.0003, 'exploration_std': 0.1}",-22.20520214282725,640.255205549729,True
-3,"{'learning_rate': 0.0003, 'exploration_std': 0.2}",-22.8687107352842,638.2776840169754,True
-0,"{'learning_rate': 0.0001, 'exploration_std': 0.1}",-23.152110377399573,658.2088820601348,True
-1,"{'learning_rate': 0.0001, 'exploration_std': 0.2}",-24.086204036029642,651.204394482811,True
+2,"{'learning_rate': 0.0003, 'exploration_std': 0.1}",-22.323123778768903,641.4376113206526,True
+3,"{'learning_rate': 0.0003, 'exploration_std': 0.2}",-22.786142170676474,648.5463910418184,True
+1,"{'learning_rate': 0.0001, 'exploration_std': 0.2}",-23.33833127529364,654.6686361858156,True
+0,"{'learning_rate': 0.0001, 'exploration_std': 0.1}",-23.621969831236598,664.7208084783779,True

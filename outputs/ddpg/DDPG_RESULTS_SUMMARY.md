@@ -1,60 +1,61 @@
-# DDPG experiment results
+# DDPG experiment results — Colab run
 
-This file summarises Raina Shah's completed DDPG experiments using configuration fingerprint `7fc3978e1036c4192871625454e78e071d739b3e01762ebbe99108120866f282`.
+These results replace the earlier run and match Raina Shah’s uploaded executed notebook and output archive. The runtime and input hashes are recorded in `ddpg_run_manifest.json`.
 
-## Completed experiment budget
+## Completed work
 
-- Tuning: four configurations × two seeds × 30,000 interactions = 240,000 interactions.
-- Final training: five seeds × 100,000 interactions = 500,000 interactions.
-- Reward sensitivity: two shortage weights × two seeds × 30,000 interactions = 120,000 interactions.
-- Final-policy robustness: five seeds × nine one-at-a-time scenarios × four held-out seasons.
-- Failed trials: zero.
-
-Every 30,000-step run completed 28,500 gradient updates after the fixed 1,500-step random-exploration period. Every 100,000-step run completed 98,500 updates.
+- Eight tuning runs: four configurations × two seeds × 30,000 interactions; all eight saved checkpoints contain 28,500 updates.
+- Five final runs: seeds 11, 22, 33, 44 and 55 × 100,000 interactions; all five saved checkpoints contain 98,500 updates.
+- 32 tuning evaluation rows, 20 held-out test rows, 420 learning-curve rows, 180 robustness rows and 16 reward-sensitivity rows. All result rows report `ok`.
+- Both farm replays are saved in the notebook. Its code cells have execution counts and no retained error outputs.
 
 ## Validation-only tuning
 
-| Rank | Learning rate | Exploration SD | Mean validation discounted return | Mean irrigation (mm) |
-|---:|---:|---:|---:|---:|
-| 1 | 0.0003 | 0.1 | -22.205 | 640.26 |
-| 2 | 0.0003 | 0.2 | -22.869 | 638.28 |
-| 3 | 0.0001 | 0.1 | -23.152 | 658.21 |
-| 4 | 0.0001 | 0.2 | -24.086 | 651.20 |
+|   configuration_index | configuration                                     |   selection_score |   mean_irrigation_mm | valid   |
+|----------------------:|:--------------------------------------------------|------------------:|---------------------:|:--------|
+|                     2 | {'learning_rate': 0.0003, 'exploration_std': 0.1} |          -22.3231 |              641.438 | True    |
+|                     3 | {'learning_rate': 0.0003, 'exploration_std': 0.2} |          -22.7861 |              648.546 | True    |
+|                     1 | {'learning_rate': 0.0001, 'exploration_std': 0.2} |          -23.3383 |              654.669 | True    |
+|                     0 | {'learning_rate': 0.0001, 'exploration_std': 0.1} |          -23.622  |              664.721 | True    |
 
-The first configuration was selected before the 2021–2024 test results were examined.
+The selected configuration is learning rate 0.0003 and exploration standard deviation 0.1. The uploaded final-training cell uses these same values.
 
-## Held-out test results
+## Held-out results
 
-The DDPG values are means across the five seed-level means, with sample SD across seeds where shown. The threshold controller is deterministic and is averaged across the four test seasons.
+DDPG means are calculated across the five seed-level means; ± denotes sample SD across seeds.
 
 | Policy | Discounted return | Irrigation (mm) | Days below target | Shortage (mm-days) | Drainage (mm) |
 |---|---:|---:|---:|---:|---:|
-| DDPG | -21.041 ± 0.435 | 600.95 ± 9.76 | 0.30 ± 0.41 | 0.49 ± 0.91 | 38.01 ± 4.90 |
-| Threshold controller | -21.488 | 615.00 | 1.50 | 4.51 | 32.10 |
+| DDPG | -21.064 ± 0.316 | 601.87 ± 6.89 | 0.25 ± 0.18 | 0.58 ± 0.81 | 37.91 ± 3.77 |
+| Threshold | -21.488 | 615.00 | 1.50 | 4.51 | 32.10 |
 
-DDPG's mean return was 0.447 higher (less negative), with 14.05 mm less irrigation and fewer target-range violations. It also produced 5.91 mm more drainage. This supports a small improvement under the declared simulator and reward, not field superiority.
+DDPG used 13.13 mm less irrigation on average and had fewer target violations, with 5.81 mm more drainage. Its return was 0.423 higher. These findings concern this simulator, not field superiority.
 
-## Learning behaviour
+## Stability and sample efficiency
 
-- The across-seed mean curve met the predeclared stability rule over its final five checkpoints.
-- Four of five individual seeds met the rule; seed 11 narrowly missed it.
-- The mean curve first stayed above the threshold-controller validation return for three consecutive checkpoints beginning at 5,000 interactions.
-- This is an operational benchmark-crossing measure, not proof of mathematical convergence.
+The mean learning curve and all five individual seeds met the declared operational stability rule. The mean curve first stayed above the threshold validation benchmark for three checkpoints starting at 5,000 interactions. Neither criterion proves mathematical convergence.
 
 ## Reward sensitivity
 
-| Shortage weight | Discounted return | Nominally rescored return | Irrigation (mm) | Days below target | Shortage (mm-days) | Drainage (mm) |
-|---:|---:|---:|---:|---:|---:|---:|
-| 5 | -22.321 | -33.832 | 640.42 | 0.50 | 0.96 | 33.40 |
-| 20 | -24.311 | -36.953 | 686.51 | 0.00 | 0.00 | 52.56 |
+| scenario           |   discounted_return |   nominal_rescored_return |   irrigation_mm |   days_below_target |   shortage_mm_days |   drainage_mm |
+|:-------------------|--------------------:|--------------------------:|----------------:|--------------------:|-------------------:|--------------:|
+| shortage_weight_20 |             -23.549 |                   -35.747 |         669.758 |               0.125 |              0.016 |        45.113 |
+| shortage_weight_5  |             -22.374 |                   -33.968 |         645.437 |               0.625 |              0.267 |        33.084 |
 
-The higher shortage weight removed dry days in these validation runs but increased irrigation and drainage. This confirms that physical behaviour depends on the reward weights.
+Increasing the shortage weight from 5 to 20 reduced dry days but increased irrigation and drainage. The higher weight did not eliminate all dry days. Separate sensitivity checkpoints were not supplied.
 
-## Robustness highlights
+## Robustness
 
-The most difficult one-at-a-time scenarios by mean discounted return were `kc_1.1` (-23.789), `root_zone_0.6m` (-23.737) and `efficiency_0.75` (-23.317). The easier scenarios were `kc_0.9` (-18.446) and `efficiency_0.95` (-19.241). These tests vary selected simulator assumptions and do not establish geographic transfer.
+| scenario           |   discounted_return |
+|:-------------------|--------------------:|
+| kc_1.1             |             -24.182 |
+| root_zone_0.6m     |             -23.710 |
+| efficiency_0.75    |             -23.420 |
+| planting_minus_14d |             -22.565 |
+| capacity_0.8       |             -22.349 |
+| planting_plus_14d  |             -20.356 |
+| capacity_1.2       |             -20.120 |
+| efficiency_0.95    |             -19.269 |
+| kc_0.9             |             -18.283 |
 
-## Limitations
-
-The experiment uses one simulated Kyabram field, historical weather, four test seasons and five seeds. The threshold controller was not separately optimised. The policy may exploit simulator-specific relationships, and no measured crop yield or field deployment was evaluated. Final conclusions about relative algorithm performance require TD3 and SAC to use the same data, fingerprint, budgets and evaluation rules.
-
+These are one-at-a-time simulator perturbations, not geographic transfer tests. The study uses one virtual field, four test seasons and five seeds; the threshold controller was not separately optimised. Compare with TD3 and SAC only under the same shared experiment design.

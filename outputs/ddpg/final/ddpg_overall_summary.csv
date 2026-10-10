@@ -1,4 +1,8 @@
-,seed,seed,discounted_return,discounted_return,undiscounted_return,undiscounted_return,irrigation_mm,irrigation_mm,days_below_target,days_below_target,shortage_mm_days,shortage_mm_days,actual_to_potential_et_ratio,actual_to_potential_et_ratio,drainage_mm,drainage_mm
-,mean,std,mean,std,mean,std,mean,std,mean,std,mean,std,mean,std,mean,std
-agent,,,,,,,,,,,,,,,,
-ddpg,33.0,17.392527130926087,-21.0407376870696,0.4347470883553134,-32.02790974369867,0.581404208782477,600.9493079205859,9.759806505486202,0.3,0.4107919181288746,0.4942685733273571,0.905915973570756,1.0,0.0,38.011832450531436,4.900962848884458
+,mean,std
+discounted_return,-21.06422358818171,0.3159817669741371
+undiscounted_return,-32.08760044595415,0.4625554193220905
+irrigation_mm,601.8677581856318,6.890801795796925
+days_below_target,0.25,0.1767766952966369
+shortage_mm_days,0.5844703650446679,0.8066049652116577
+actual_to_potential_et_ratio,1.0,0.0
+drainage_mm,37.91029141051359,3.7727040332484507
