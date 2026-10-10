@@ -31,8 +31,10 @@ The climate inputs are real historical observations or SILO interpolations. Soil
 │   ├── 00_shared_template.ipynb
 │   └── 01_ddpg.ipynb
 └── outputs/
-    └── ddpg/
-        └── DDPG_RESULTS_SUMMARY.md
+    ├── ddpg/
+    │   └── DDPG_RESULTS_SUMMARY.md
+    ├── td3/
+    └── sac/
 ```
 
 ## Start here
@@ -52,7 +54,22 @@ The notebook contains:
 
 If Colab does not make the repository data available automatically, upload [`data/Irrigation_Data_Audit.zip`](data/Irrigation_Data_Audit.zip) using the Colab Files panel before running the data-loading cell.
 
+## Visual farm replay
+
+Both notebooks include a farm animation following the RGB-frame capture and evaluation patterns in Practicals 1 and 9. Open in Colab or a trusted Jupyter notebook and run the visual replay cells for play/pause and frame controls; GitHub's static preview does not run the animation player. Saved compact video previews are embedded in the notebooks.
+
+The template shows the threshold controller. The DDPG notebook also shows final seed 11 on validation season 2017. To regenerate that DDPG replay, place `ddpg_seed11.pt` in `outputs/ddpg/final/` (or upload it to `/content/` in Colab). Crop artwork is illustrative; displayed water, irrigation and reward come from the simulator.
+
 ## Parallel group workflow
+
+| Member | Agent | Output directory |
+|---|---|---|
+| Raina Shah | DDPG | `outputs/ddpg/` |
+| Arnav Dangmali | TD3 | `outputs/td3/` |
+| Malaika Noor | SAC | `outputs/sac/` |
+
+Each agent keeps its results, checkpoints and visualisations in its own subfolder. Use the notebook helper `agent_output_dir("ddpg")`, `agent_output_dir("td3")` or `agent_output_dir("sac")`; it resolves the same repository output directory when launched from the repository root or `notebooks/`. Keep tuning, final and reward-sensitivity results in corresponding subfolders within the agent directory.
+
 
 Create the following copies from the shared template:
 
