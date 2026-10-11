@@ -1,0 +1,10 @@
+{
+    "configuration_index": 2,
+    "configuration": {
+        "learning_rate": 0.0003,
+        "exploration_std": 0.1
+    },
+    "selection_score": -22.323123778768903,
+    "mean_irrigation_mm": 641.4376113206526,
+    "valid": true
+}
