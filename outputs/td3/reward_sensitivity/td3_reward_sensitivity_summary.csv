@@ -1,0 +1,3 @@
+scenario,seed,season_year,training_steps,discounted_return,undiscounted_return,nominal_rescored_return,irrigation_mm,days_below_target,shortage_mm_days,actual_to_potential_et_ratio,drainage_mm
+shortage_weight_20,151.5,2018.5,30000.0,-22.86688784122602,-34.60157496548833,-34.60157496548833,655.7693823118461,0.0,0.0,1.0,36.26211699792054
+shortage_weight_5,151.5,2018.5,30000.0,-22.462753262316784,-33.8178989195006,-33.833756985713066,640.4405755959306,0.125,0.11392620835010359,1.0,35.6002414698322
