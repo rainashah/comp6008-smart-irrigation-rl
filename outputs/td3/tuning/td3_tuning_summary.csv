@@ -1,0 +1,5 @@
+configuration_index,configuration,selection_score,mean_irrigation_mm,valid
+3,"{'learning_rate': 0.0003, 'exploration_std': 0.2}",-22.384912432111054,639.005244957516,True
+2,"{'learning_rate': 0.0003, 'exploration_std': 0.1}",-22.766093621404636,648.839043152766,True
+0,"{'learning_rate': 0.0001, 'exploration_std': 0.1}",-23.928818752288517,684.0487546730583,True
+1,"{'learning_rate': 0.0001, 'exploration_std': 0.2}",-24.31676102788876,689.0078548763267,True
