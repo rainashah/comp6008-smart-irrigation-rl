@@ -23,7 +23,7 @@ jobs:
           pip install -q gymnasium numpy pandas matplotlib torch nbconvert ipykernel
       - name: Execute farm replay notebook
         run: |
-          jupyter nbconvert --to notebook --execute notebooks/05_farm_replay.ipynb --output 05_farm_replay.ipynb --output-dir notebooks --ExecutePreprocessor.timeout=900 --allow-errors=False
+          jupyter nbconvert --to notebook --execute notebooks/05_farm_replay.ipynb --output 05_farm_replay.ipynb --output-dir notebooks --ExecutePreprocessor.timeout=900
       - name: Commit executed notebook and exports
         run: |
           git config user.name "github-actions[bot]"
