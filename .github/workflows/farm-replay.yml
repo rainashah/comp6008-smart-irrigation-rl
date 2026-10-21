@@ -1,0 +1,36 @@
+name: Build farm replay assets
+
+on:
+  push:
+    paths:
+      - '.github/workflows/farm-replay.yml'
+      - 'notebooks/05_farm_replay.ipynb'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect replay policy definitions
+        shell: bash
+        run: |
+          python - <<'PY'
+          import ast, json, re
+          for short in ['01_ddpg', '02_td3', '03_sac']:
+              nb=json.load(open('notebooks/'+short+'.ipynb'))
+              print('\n'+'='*20+' '+short+' '+'='*20)
+              for ci,c in enumerate(nb.get('cells',[])):
+                  if c.get('cell_type')!='code': continue
+                  s=''.join(c.get('source',[]))
+                  try: t=ast.parse(s)
+                  except SyntaxError: continue
+                  for node in t.body:
+                      if isinstance(node,(ast.FunctionDef,ast.ClassDef)):
+                          if re.search(r'Actor|Policy|Agent|select_action|load_.*(checkpoint|agent|model)',node.name,re.I):
+                              print('CELL',ci,'DEF',type(node).__name__,node.name)
+                              print(ast.get_source_segment(s,node)[:3200])
+          PY
