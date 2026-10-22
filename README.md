@@ -1,114 +1,135 @@
 # Smart Irrigation with Reinforcement Learning
 
-COMP6008 group project comparing **DDPG, TD3 and SAC** for continuous irrigation control in a simulated maize field at **Kyabram, Victoria**.
+**COMP6008 · Group 12** — Raina Shah (DDPG), Arnav Dangmali (TD3), Malaika Noor (SAC)
 
-The controller selects a daily irrigation depth from **0–20 mm**. A soil-water-balance simulator combines that action with historical rainfall and reference evapotranspiration to update soil-water storage. The objective is to maintain suitable water availability while reducing irrigation use and unnecessary drainage.
+This project compares **Deep Deterministic Policy Gradient (DDPG)**, **Twin Delayed DDPG (TD3)** and **Soft Actor-Critic (SAC)** for continuous daily irrigation control in a *simulated* grain-maize field at Kyabram, Victoria, Australia (SILO station `080091`).
 
-## Current status
+An agent chooses **0–20 mm of irrigation per day**. A shared Gymnasium soil-water-balance environment updates available root-zone water using historical rainfall, irrigation, evapotranspiration and drainage. All three agents are evaluated using the same environment, training budgets and held-out seasons.
 
-- Kyabram selected after auditing the available SILO and CSIRO data.
-- Historical climate and soil inputs downloaded and screened.
-- Shared Gymnasium environment implemented in the group notebook.
-- Environment validated for observation shape, action bounds, weather timing, water balance and 150-day termination.
-- DDPG implementation, validation-only tuning, five-seed final testing, reward sensitivity and robustness experiments are complete.
-- TD3 and SAC implementation and matching experiments remain to be completed by their assigned members.
+**Scope:** Historical climate inputs are real records or SILO-derived estimates; the field, soil-water dynamics, irrigation actions and crop response are simulated. This study does **not** measure actual crop yield, demonstrate real-farm deployment or establish superiority on other farms.
 
-The climate inputs are real historical observations or SILO interpolations. Soil water, irrigation decisions and crop response are simulated. The reference coordinate represents a virtual field, not a verified commercial paddock.
+## Project status
 
-## Repository structure
+- Implementations and saved experiments are available for **all three agents: DDPG, TD3 and SAC**.
+- Validation-based hyperparameter tuning, five-seed final training/evaluation, reward-sensitivity and nine-scenario robustness experiments have been conducted.
+- `04_algorithm_comparison.ipynb` analyses the saved results across agents, including learning curves, stability, held-out performance, robustness and uncertainty.
+- `05_farm_replay.ipynb` uses **saved final seed-11 checkpoints** for a synchronised 2017 validation-season replay; it does not retrain the models.
+- The comparison and replay outputs, model checkpoints and source data archive are stored in this repository.
 
-```text
-.
-├── README.md
-├── data/
-│   └── Irrigation_Data_Audit.zip
-├── docs/
-│   ├── DATA_AUDIT.md
-│   ├── FIXED_EXPERIMENT_SETTINGS.md
-│   ├── PRACTICAL_CODE_REUSE.md
-│   └── PROJECT_OBJECTIVES.md
-├── notebooks/
-│   ├── 00_shared_template.ipynb
-│   └── 01_ddpg.ipynb
-└── outputs/
-    ├── ddpg/
-    │   └── DDPG_RESULTS_SUMMARY.md
-    ├── td3/
-    └── sac/
-```
+The original `00_shared_template.ipynb` remains a **shared environment/scaffold** and still contains agent implementation placeholders. It is **not** a substitute for the completed agent notebooks.
 
-## Start here
+## Where to find the work
 
-Open [`notebooks/00_shared_template.ipynb`](notebooks/00_shared_template.ipynb) in Google Colab or Jupyter.
-
-Raina's completed Colab-executed DDPG notebook is [`notebooks/01_ddpg.ipynb`](notebooks/01_ddpg.ipynb). Its concise results and limitations are in [`outputs/ddpg/DDPG_RESULTS_SUMMARY.md`](outputs/ddpg/DDPG_RESULTS_SUMMARY.md).
-
-The notebook contains:
-
-- the complete Kyabram Gymnasium environment;
-- fixed shared settings and chronological season splits;
-- environment validation and benchmark policies;
-- shared replay-buffer and neural-network utilities;
-- separate work areas for DDPG, TD3 and SAC; and
-- templates for tuning, evaluation and results.
-
-If Colab does not make the repository data available automatically, upload [`data/Irrigation_Data_Audit.zip`](data/Irrigation_Data_Audit.zip) using the Colab Files panel before running the data-loading cell.
-
-## Visual farm replay
-
-Both notebooks include a farm animation following the RGB-frame capture and evaluation patterns in Practicals 1 and 9. Open in Colab or a trusted Jupyter notebook and run the visual replay cells for play/pause and frame controls; GitHub's static preview does not run the animation player. Saved compact video previews are embedded in the notebooks.
-
-The template shows the threshold controller. The DDPG notebook also shows final seed 11 on validation season 2017. To regenerate that DDPG replay, place `ddpg_seed11.pt` in `outputs/ddpg/final/` (or upload it to `/content/` in Colab). Crop artwork is illustrative; displayed water, irrigation and reward come from the simulator.
-
-## Parallel group workflow
-
-| Member | Agent | Output directory |
-|---|---|---|
-| Raina Shah | DDPG | `outputs/ddpg/` |
-| Arnav Dangmali | TD3 | `outputs/td3/` |
-| Malaika Noor | SAC | `outputs/sac/` |
-
-Each agent keeps its results, checkpoints and visualisations in its own subfolder. Use the notebook helper `agent_output_dir("ddpg")`, `agent_output_dir("td3")` or `agent_output_dir("sac")`; it resolves the same repository output directory when launched from the repository root or `notebooks/`. Keep tuning, final and reward-sensitivity results in corresponding subfolders within the agent directory.
-
-
-Create the following copies from the shared template:
-
-```text
-notebooks/01_ddpg.ipynb
-notebooks/02_td3.ipynb
-notebooks/03_sac.ipynb
-```
-
-Each member should implement only their assigned agent section. The environment, observations, reward, data splits, shared network size, training budgets and evaluation rules must remain identical across agents. Proposed shared-setting changes should be agreed and recorded before final testing.
-
-After the three agents pass short integration runs, merge them into one final comparison notebook for tuning, five-seed experiments, held-out testing and robustness evaluation.
-
-## Current DDPG result
-
-Validation-only tuning selected a learning rate of `0.0003` and exploration standard deviation of `0.1`. Across five final seeds and the held-out 2021–2024 seasons, DDPG achieved a mean discounted return of **-21.064 ± 0.316**, compared with **-21.488** for the fixed threshold controller. DDPG used 13.13 mm less irrigation on average and reduced dry-day violations, but produced 5.81 mm more drainage. This is a result for the declared simulator, not evidence of field superiority.
-
-## Experiment summary
-
-| Component | Shared design |
+| Location | Contents |
 |---|---|
-| Location | Kyabram, Victoria; SILO station `080091` |
-| Crop and episode | Grain maize; 150 daily decisions from 1 November |
-| Observation | 18 values: soil-water storage, crop progress, previous irrigation and seven days of rainfall/ETo history |
-| Action | One continuous normalised action mapped to 0–20 mm irrigation per day |
-| Reward | Penalties for irrigation use, soil-water shortage and drainage |
-| Training seasons | 2005–2016 |
-| Validation seasons | 2017–2020 |
-| Test seasons | 2021–2024 |
-| Algorithms | DDPG, TD3 and SAC |
-| Main benchmark | Fixed soil-water-threshold controller |
+| [`notebooks/00_shared_template.ipynb`](notebooks/00_shared_template.ipynb) | Shared environment, assumptions, benchmark and reusable utilities; agent placeholders remain |
+| [`notebooks/01_ddpg.ipynb`](notebooks/01_ddpg.ipynb) | Raina's DDPG implementation, training, evaluation and diagnostics |
+| [`notebooks/02_td3.ipynb`](notebooks/02_td3.ipynb) | Arnav's TD3 implementation, training, evaluation and findings |
+| [`notebooks/03_sac.ipynb`](notebooks/03_sac.ipynb) | Malaika's SAC implementation, training, evaluation and findings |
+| [`notebooks/04_algorithm_comparison.ipynb`](notebooks/04_algorithm_comparison.ipynb) | Cross-algorithm analysis of saved experiment outputs; **no retraining required** |
+| [`notebooks/05_farm_replay.ipynb`](notebooks/05_farm_replay.ipynb) | Four-controller validation-season replay using saved checkpoints |
+| [`data/Irrigation_Data_Audit.zip`](data/Irrigation_Data_Audit.zip) | Bundled climate and soil data, provenance and audit scripts |
+| [`outputs/ddpg/`](outputs/ddpg/), [`outputs/td3/`](outputs/td3/), [`outputs/sac/`](outputs/sac/) | Agent checkpoints, tuning records, final results and sensitivity/robustness outputs |
+| [`outputs/replay/`](outputs/replay/) | Replay MP4, preview image, daily simulation data and 2017 summary |
+| [`outputs/learning_curves_comparison.png`](outputs/learning_curves_comparison.png) and [`outputs/robustness_comparison.png`](outputs/robustness_comparison.png) | Additional group comparison graphics |
+| [`docs/`](docs/) | Scientific rationale, fixed settings, data audit and practical-code reuse notes |
 
-## Project documents
+The three agent notebooks contain saved execution outputs and are comparatively large. Open one at a time if GitHub's preview struggles to render them.
 
-- [`DATA_AUDIT.md`](docs/DATA_AUDIT.md) — climate and soil audit, including the Kyabram–Kununurra comparison.
-- [`PROJECT_OBJECTIVES.md`](docs/PROJECT_OBJECTIVES.md) — assignment responses, MDP definition, scientific reasoning and references.
-- [`FIXED_EXPERIMENT_SETTINGS.md`](docs/FIXED_EXPERIMENT_SETTINGS.md) — authoritative shared implementation, tuning and evaluation rules.
-- [`PRACTICAL_CODE_REUSE.md`](docs/PRACTICAL_CODE_REUSE.md) — practical material that can be adapted and the limits of that reuse.
+## Environment and experimental design
 
-## Reproducibility rule
+| Setting | Value |
+|---|---|
+| Virtual field | Kyabram, Victoria; SILO station 080091 |
+| Crop and episode | Grain maize; 150 daily decisions beginning 1 November |
+| Observation | 18 values: storage, season day, crop coefficient, previous irrigation, seven days of rainfall and reference ETo history |
+| Action | Normalised continuous action in [−1, 1], mapped to 0–20 mm/day |
+| Dynamics | Daily water balance with rain, effective irrigation (nominal efficiency 0.85), drainage and crop evapotranspiration |
+| Reward | Negative penalties for irrigation use, soil-water shortage and drainage |
+| Training / validation / test planting years | 2005–2016 / 2017–2020 / 2021–2024 |
+| Final training | 100,000 environment steps per seed per agent |
+| Final training seeds | 11, 22, 33, 44, 55 |
+| Tuning | Four configurations × two tuning seeds (101 and 202) × 30,000 steps per agent |
+| Main reference policy | Fixed soil-water-threshold controller |
 
-The test seasons must not be used to select hyperparameters, checkpoints, reward weights or other design settings. Record unsuccessful and numerically failed runs as well as successful results.
+For precise equations, observation ordering, reward scaling and evaluation rules, see [`FIXED_EXPERIMENT_SETTINGS.md`](docs/FIXED_EXPERIMENT_SETTINGS.md). The agent selects irrigation *before* the current day's rainfall and ETo are revealed.
+
+## Reproduce the saved comparisons
+
+The fastest path to inspect the group's final results is to **reuse the checked-in CSV files** rather than rerun all training.
+
+1. Clone or download the whole repository, retaining the `notebooks/` and `outputs/` folders.
+2. Set the working directory to the repository root (or `notebooks/`).
+3. Open [`notebooks/04_algorithm_comparison.ipynb`](notebooks/04_algorithm_comparison.ipynb) in Jupyter or Google Colab and run its cells in order.
+4. Review the input/fairness audit and regenerated tables and graphs in `outputs/comparison/`.
+
+The comparison notebook checks available inputs, fixed final seeds, test years and training budgets. It writes comparison tables, figures and findings to `outputs/comparison/` **when executed**; that generated directory is not necessarily included in the current Git checkout.
+
+### Local setup
+
+The project notebooks use Python, PyTorch, Gymnasium, NumPy, pandas and Matplotlib. The original shared notebook installs these package ranges:
+
+```bash
+python -m pip install "gymnasium>=1.0,<2" "numpy>=1.22" "torch>=2.0" "pandas>=2.0" "matplotlib>=3.7" jupyterlab ipykernel nbconvert
+```
+
+The recorded GitHub Actions farm-replay build runs on Python 3.11. **Dependency versions for all training notebooks are not pinned in a `requirements.txt` file in this repository at present**; the command above is a starting setup, not a verified lockfile for every original training run.
+
+For Colab, clone the repository into the runtime first (opening only a GitHub notebook does not automatically provide `data/`, `outputs/` or the other notebooks):
+
+```python
+!git clone https://github.com/rainashah/comp6008-smart-irrigation-rl.git
+%cd /content/comp6008-smart-irrigation-rl
+```
+
+Then run the selected notebook with this repository accessible in the runtime. The shared notebook also has an installation cell. Full training is substantially more expensive than loading the saved comparisons.
+
+### Data source and availability
+
+The required experiment input is already included at [`data/Irrigation_Data_Audit.zip`](data/Irrigation_Data_Audit.zip). The simulator reads `irrigation_audit/kyabram_080091_daily.json` **from inside that ZIP**; you do not need to download new climate data to run the supplied saved analyses or the shared environment.
+
+- Climate: Queensland Government **SILO Patched Point** historical daily rainfall and derived reference evapotranspiration.
+- Soil: **TERN/CSIRO Soil and Landscape Grid** available-water-capacity data used to define the simplified virtual root-zone reservoir.
+- Audit instructions, licensing/source details and optional refresh instructions: [`docs/DATA_AUDIT.md`](docs/DATA_AUDIT.md).
+- Refreshing SILO climate data is optional and requires an authorised `SILO_EMAIL` for the provided downloader. A refreshed dataset may differ from the fixed experiment input.
+
+The data ZIP also contains climate/soil audit scripts. The soil audit uses Pillow; it is not needed to analyse the already-saved RL results.
+
+## Re-run an agent or regenerate the video
+
+To inspect an individual implementation, open its notebook: [DDPG](notebooks/01_ddpg.ipynb), [TD3](notebooks/02_td3.ipynb) or [SAC](notebooks/03_sac.ipynb). Each includes the environment and agent-specific development, tuning, final evaluation and analysis. **Follow its own cell order and instructions.** Running training may be time-consuming and may regenerate output files; preserve the checked-in checkpoints and results if you want to compare an independent rerun.
+
+To reproduce the presentation replay **without retraining**, execute [`notebooks/05_farm_replay.ipynb`](notebooks/05_farm_replay.ipynb) from a repository checkout with the saved seed-11 checkpoints present. Creating an MP4 requires an available `ffmpeg` executable (installed in the [farm replay GitHub Actions workflow](.github/workflows/farm-replay.yml)). Its output files include:
+
+- [`farm_replay_2017.mp4`](outputs/replay/farm_replay_2017.mp4) — 37.5-second four-panel replay of DDPG, TD3, SAC and the threshold controller.
+- [`farm_replay_2017_preview.png`](outputs/replay/farm_replay_2017_preview.png) — static preview.
+- [`farm_replay_2017_daily.csv`](outputs/replay/farm_replay_2017_daily.csv) and [`farm_replay_2017_summary.csv`](outputs/replay/farm_replay_2017_summary.csv) — simulator outputs.
+
+**Important:** 2017 is a **validation** year. The replay is an illustrative comparison under identical simulated conditions, **not** an additional held-out test. Formal performance comparisons use the 2021–2024 test seasons.
+
+## Saved held-out results
+
+Final results averaged over **five training seeds × four held-out planting years (2021–2024)**. Return is discounted environmental reward (higher/less negative is better); irrigation is mean total irrigation per 150-day season.
+
+| Agent | Mean discounted return | SD across seed-level means | Mean irrigation (mm/season) |
+|---|---:|---:|---:|
+| TD3 | −20.426 | 0.295 | 588.01 |
+| DDPG | −21.064 | 0.316 | 601.87 |
+| SAC | −22.847 | 0.359 | 621.81 |
+
+TD3 had the highest average reward and lowest irrigation of the three agents under the declared simulator and evaluation. Interpret water savings alongside soil-water shortage and drainage, not in isolation. These results are **not** measured farm yields or evidence of cross-location transfer.
+
+The values originate from the stored final test and summary CSVs. For full per-season, per-seed and robustness comparisons, run `04_algorithm_comparison.ipynb`.
+
+## Supporting documentation
+
+- [`docs/FIXED_EXPERIMENT_SETTINGS.md`](docs/FIXED_EXPERIMENT_SETTINGS.md) — shared design, equations, hyperparameter selection and experiment protocol.
+- [`docs/DATA_AUDIT.md`](docs/DATA_AUDIT.md) — source-data screening and provenance; some historical planning statements predate the fixed Kyabram experiment.
+- [`docs/PROJECT_OBJECTIVES.md`](docs/PROJECT_OBJECTIVES.md) — rationale, scientific sources and project requirements.
+- [`docs/PRACTICAL_CODE_REUSE.md`](docs/PRACTICAL_CODE_REUSE.md) — practical-code starting points and adaptation boundaries.
+
+## Reproducibility and interpretation
+
+Hyperparameters and selected checkpoints were chosen from **validation**, not final test years. Final test summaries, robustness perturbations and reward-sensitivity runs address different questions and should not be conflated. A five-seed study in one simplified virtual field cannot establish universal algorithm superiority.
+
+**Code-submission note:** This repository currently keeps the completed agent implementations in separate notebooks, and `00_shared_template.ipynb` contains placeholders. If the assessment requires one consolidated notebook, a `requirements.txt` file or individual declaration forms, those are **separate submission checks** and should not be assumed complete merely because this README is current.
