@@ -15,6 +15,8 @@ An agent chooses **0–20 mm of irrigation per day**. A shared Gymnasium soil-wa
 - `04_algorithm_comparison.ipynb` analyses the saved results across agents, including learning curves, stability, held-out performance, robustness and uncertainty.
 - `05_farm_replay.ipynb` uses **saved final seed-11 checkpoints** for a synchronised 2017 validation-season replay; it does not retrain the models.
 - The comparison and replay outputs, model checkpoints and source data archive are stored in this repository.
+- The **[executed consolidated review notebook](notebooks/COMP6008_Group12_Consolidated_Review.ipynb)** brings the three agents, shared environment, saved-result comparisons and replay verification into one notebook. Its recorded Colab run shows both held-out and replay checks passing; it does not retrain by default.
+- A project-specific [`requirements.txt`](requirements.txt) with six direct, version-pinned Python dependencies is now included.
 
 The original `00_shared_template.ipynb` remains a **shared environment/scaffold** and still contains agent implementation placeholders. It is **not** a substitute for the completed agent notebooks.
 
@@ -22,6 +24,8 @@ The original `00_shared_template.ipynb` remains a **shared environment/scaffold*
 
 | Location | Contents |
 |---|---|
+| **[`notebooks/COMP6008_Group12_Consolidated_Review.ipynb`](notebooks/COMP6008_Group12_Consolidated_Review.ipynb)** | **Primary review notebook**: consolidated implementations, saved-results comparison, verification checks and 2017 replay; includes recorded Colab outputs |
+| [`requirements.txt`](requirements.txt) | Six direct Python dependencies, selected dynamically from project notebook imports and installed versions |
 | [`notebooks/00_shared_template.ipynb`](notebooks/00_shared_template.ipynb) | Shared environment, assumptions, benchmark and reusable utilities; agent placeholders remain |
 | [`notebooks/01_ddpg.ipynb`](notebooks/01_ddpg.ipynb) | Raina's DDPG implementation, training, evaluation and diagnostics |
 | [`notebooks/02_td3.ipynb`](notebooks/02_td3.ipynb) | Arnav's TD3 implementation, training, evaluation and findings |
@@ -54,35 +58,52 @@ The three agent notebooks contain saved execution outputs and are comparatively 
 
 For precise equations, observation ordering, reward scaling and evaluation rules, see [`FIXED_EXPERIMENT_SETTINGS.md`](docs/FIXED_EXPERIMENT_SETTINGS.md). The agent selects irrigation *before* the current day's rainfall and ETo are revealed.
 
-## Reproduce the saved comparisons
+## Run the consolidated notebook (recommended)
 
-The fastest path to inspect the group's final results is to **reuse the checked-in CSV files** rather than rerun all training.
+The **[consolidated review notebook](notebooks/COMP6008_Group12_Consolidated_Review.ipynb)** is the single entry point for reviewing the shared environment, DDPG, TD3 and SAC implementations, saved held-out comparisons and the 2017 replay. It has recorded execution outputs on `main`: **all 60 test seed–season records agree with the saved results, and all four replay controllers match the stored 2017 replay**. These are saved-output verification checks, **not** a fresh retraining run.
 
-1. Clone or download the whole repository, retaining the `notebooks/` and `outputs/` folders.
-2. Set the working directory to the repository root (or `notebooks/`).
-3. Open [`notebooks/04_algorithm_comparison.ipynb`](notebooks/04_algorithm_comparison.ipynb) in Jupyter or Google Colab and run its cells in order.
-4. Review the input/fairness audit and regenerated tables and graphs in `outputs/comparison/`.
+### Run in Google Colab
 
-The comparison notebook checks available inputs, fixed final seeds, test years and training budgets. It writes comparison tables, figures and findings to `outputs/comparison/` **when executed**; that generated directory is not necessarily included in the current Git checkout.
+1. Open [**the consolidated notebook in Colab**](https://colab.research.google.com/github/rainashah/comp6008-smart-irrigation-rl/blob/main/notebooks/COMP6008_Group12_Consolidated_Review.ipynb).
+2. Start a **fresh Python runtime**. The notebook's first code cell clones this repository to `/content/comp6008-smart-irrigation-rl`, changes directory to `notebooks/` and installs its initial Python packages. **Do not clone it a second time into the same path.** If that directory already exists, restart the runtime before running the bootstrap cell.
+3. Run the notebook's cells in order (`Runtime → Run all`). The standard configuration reads existing experiment files and **does not retrain** the models.
+4. Confirm that the comparison audit lists all three agents and that the notebook prints:
 
-### Local setup
+   - `PASS: All 60 held-out seed-season records agree with the saved group results.`
+   - `PASS: All four 2017 replay controllers reproduce the saved results.`
 
-The project notebooks use Python, PyTorch, Gymnasium, NumPy, pandas and Matplotlib. The original shared notebook installs these package ranges:
+5. The comparison section writes fresh analysis figures and tables to `outputs/comparison/` in the **runtime checkout**. The replay verification writes separate files to `outputs/consolidated_replay/`. These files are **not automatically committed to GitHub**.
+
+**Default safety switches:** `RUN_DDPG_DEVELOPMENT`, `RUN_DDPG_TUNING`, `RUN_FINAL_DDPG`, `RUN_TD3_DEVELOPMENT`, `RUN_TD3_TUNING`, `RUN_FINAL_TD3`, `RUN_TD3_REWARD_SENSITIVITY`, and `RUN_SAC_EXPERIMENTS` are `False`. `RUN_REPLAY_CHECK` is `True` and `GENERATE_NEW_MP4` is `False`. Keep the training switches off when verifying the saved results; enabling them can regenerate model or result files.
+
+The final dependency-management cell in the notebook can regenerate `requirements.txt` from the current Colab runtime. It writes only to the runtime's repository checkout unless someone commits it.
+
+### Dependencies and local setup
+
+The repository now includes [`requirements.txt`](requirements.txt) with the six directly imported Python dependencies as recorded in the successful Colab environment:
+
+```text
+gymnasium==1.4.0
+ipython==7.34.0
+matplotlib==3.10.0
+numpy==2.1.3
+pandas==2.2.3
+torch==2.11.0
+```
+
+On a compatible local Python installation, install them using:
 
 ```bash
-python -m pip install "gymnasium>=1.0,<2" "numpy>=1.22" "torch>=2.0" "pandas>=2.0" "matplotlib>=3.7" jupyterlab ipykernel nbconvert
+python -m pip install -r requirements.txt
 ```
 
-The recorded GitHub Actions farm-replay build runs on Python 3.11. **Dependency versions for all training notebooks are not pinned in a `requirements.txt` file in this repository at present**; the command above is a starting setup, not a verified lockfile for every original training run.
+A local Jupyter interface (for example, JupyterLab) must also be installed to open `.ipynb` notebooks. **FFmpeg is a separate system-level requirement only for generating a new MP4**; the original replay video is already stored in `outputs/replay/`.
 
-For Colab, clone the repository into the runtime first (opening only a GitHub notebook does not automatically provide `data/`, `outputs/` or the other notebooks):
+**How `requirements.txt` was prepared:** an unfiltered Colab `pip freeze` listed 646 environment-wide packages. Instead, project notebook imports were scanned dynamically and their installed versions selected from that `pip freeze` output, excluding unrelated Colab packages and replacing the platform-specific PyTorch wheel URL with a standard package version. This is a **direct-dependency snapshot**, not a full environment lockfile, and a fresh local installation with these exact pins has not been independently validated.
 
-```python
-!git clone https://github.com/rainashah/comp6008-smart-irrigation-rl.git
-%cd /content/comp6008-smart-irrigation-rl
-```
+### Standalone comparison notebook
 
-Then run the selected notebook with this repository accessible in the runtime. The shared notebook also has an installation cell. Full training is substantially more expensive than loading the saved comparisons.
+The original [`04_algorithm_comparison.ipynb`](notebooks/04_algorithm_comparison.ipynb) is retained. To use it separately, clone/download the full repository, set the working directory to the repository root or `notebooks/`, and execute the notebook in order. It reads the saved CSV outputs rather than retraining and generates cross-agent tables, learning curves, generalisation plots, robustness and uncertainty analyses under `outputs/comparison/`.
 
 ### Data source and availability
 
