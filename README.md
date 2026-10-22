@@ -131,5 +131,3 @@ The values originate from the stored final test and summary CSVs. For full per-s
 ## Reproducibility and interpretation
 
 Hyperparameters and selected checkpoints were chosen from **validation**, not final test years. Final test summaries, robustness perturbations and reward-sensitivity runs address different questions and should not be conflated. A five-seed study in one simplified virtual field cannot establish universal algorithm superiority.
-
-**Code-submission note:** This repository currently keeps the completed agent implementations in separate notebooks, and `00_shared_template.ipynb` contains placeholders. If the assessment requires one consolidated notebook, a `requirements.txt` file or individual declaration forms, those are **separate submission checks** and should not be assumed complete merely because this README is current.
