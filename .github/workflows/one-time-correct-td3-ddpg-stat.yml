@@ -1,0 +1,38 @@
+name: One-time correction of TD3 DDPG comparison
+on:
+  push:
+    paths:
+      - '.github/workflows/one-time-correct-td3-ddpg-stat.yml'
+permissions:
+  contents: write
+jobs:
+  correct:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Correct the two stated DDPG comparison statistics
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('notebooks/02_td3.ipynb')
+          original = p.read_text(encoding='utf-8')
+          changes = {
+              'DDPG −21.041 ± 0.435': 'DDPG −21.064 ± 0.316',
+              '(0.295 vs 0.435)': '(0.295 vs 0.316)',
+          }
+          corrected = original
+          for before, after in changes.items():
+              count = corrected.count(before)
+              if count != 1:
+                  raise RuntimeError(f'Expected one occurrence of {before!r}, found {count}. File unchanged.')
+              corrected = corrected.replace(before, after)
+          p.write_text(corrected, encoding='utf-8')
+          print('Corrected only the two comparison statistics.')
+          PY
+      - name: Commit corrected notebook without altering removed sections
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add notebooks/02_td3.ipynb
+          git diff --cached --quiet || (git commit -m 'Correct reported DDPG comparison metrics in TD3 results notes' && git push)
