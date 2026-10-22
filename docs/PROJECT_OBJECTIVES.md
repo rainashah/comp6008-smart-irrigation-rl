@@ -381,34 +381,6 @@ The timeline leaves limited recovery time before the **23 October** code and pre
 
 [12] R. Searle, P. D. S. N. Somarathna, and B. Malone, *Soil and Landscape Grid National Soil Attribute Maps – Available Volumetric Water Capacity (Percent) (3 arc second resolution) Version 2*, CSIRO, 2022, dataset, doi: [10.25919/4jwj-na34](https://doi.org/10.25919/4jwj-na34). The DOI currently points to the CSIRO collection revision v4. “Version 2” names the soil product; collection revision and product version are different. The audit's saved WCS URLs and file hashes identify our actual downloads.
 
-## Reference verification record
-
-**Checked 4 October 2026.** The checks covered (1) publication identity and publication type, (2) DOI registration/title match where a DOI was identified, and (3) whether the source actually supports the claim made here. DOI metadata was checked against Crossref for journal/conference items and DataCite for the dataset, with publisher or conference records checked separately. A DOI alone is not evidence of peer review.
-
-| Ref. | Publication / review status | DOI outcome | What it supports and what it does not |
-|---|---|---|---|
-| [1] | Authoritative MIT Press textbook; supplied course copy checked. Not classified here as a peer-reviewed research article. | No DOI verified for this edition; cite ISBN **9780262039246** and the publisher. | MDP, policy, return, reward and actor–critic foundations; not exact crop settings or neural-agent convergence in this observation space. |
-| [2] | Authoritative FAO technical manual; not a peer-reviewed journal article. | No DOI verified; retain official FAO chapter links. | Source equations and tables; local parameter transfer remains an assumption. |
-| [3] | Peer-reviewed research article, *Agricultural Water Management*. | **10.1016/j.agwat.2008.11.005**: Crossref title/author/year match and DOI redirect checked. | Regional forage water-balance evidence; not field-specific validation. |
-| [4] | Peer-reviewed ICLR 2016 conference paper; checked against the official accepted-paper record and author manuscript. | No conference-publication DOI identified. | Original DDPG method. Its arXiv record is an access copy, not independent proof of peer review. |
-| [5] | Peer-reviewed ICML 2018 conference paper, PMLR 80. | Official proceedings metadata lists no DOI. | Original TD3 mechanisms; no guarantee of superiority for irrigation. |
-| [6] | Peer-reviewed ICML 2018 conference paper, PMLR 80. | Official proceedings metadata lists no DOI. | Original SAC formulation; not authority for silently using later automatic-temperature variants. |
-| [7] | Peer-reviewed AAAI 2018 technical-track paper. | **10.1609/aaai.v32i1.11694**: Crossref and AAAI record match; DOI redirect checked. | Reproducibility and variability; does not prescribe exactly five seeds or our budget. |
-| [8] | Peer-reviewed research article, *Environmental Modelling & Software*. | **10.1016/S1364-8152(01)00008-1**: Crossref and publisher match; DOI redirect checked. | SILO interpolation methodology; not a validation of every downloaded value. |
-| [9] | Peer-reviewed research article, *Australian Journal of Experimental Agriculture*. The publisher now hosts it within its Animal Production Science archive. | **10.1071/EA06094**: Crossref and CSIRO/ConnectSci title, authors, year and pages match. Direct resolver access was blocked in one check; the publisher's DOI lookup and abstract were accessible. | Regional silage-maize measurements and FAO-56 comparison; not our grain calendar, exact coordinate or single-coefficient value. |
-| [10] | Peer-reviewed review article, *Agricultural Water Management*; the authors' university record explicitly classifies it as peer-reviewed. | **10.1016/j.agwat.2020.106466**: Crossref and author/publisher metadata match; DOI redirect checked. | Crop-coefficient method and transfer conditions; 2020 in the DOI does not change the 2021 volume citation. |
-| [11] | Peer-reviewed research article, *Geoderma*; published version and received/revised/accepted history checked. | **10.1016/j.geoderma.2025.117226**: Crossref, publisher metadata and published PDF match; DOI redirect checked. | Digital soil mapping methods and limitations; not a measured Kyabram soil profile. |
-| [12] | Research dataset; not a peer-reviewed article. | **10.25919/4jwj-na34**: DataCite title/creator/type match and DOI redirect checked. | Data provenance only; dataset DOI must not be counted as a peer-reviewed paper. |
-
-There are **six peer-reviewed publications with verified registered DOIs** in this list: [3], [7]–[11]. The three original algorithm papers are also peer-reviewed, but no conference DOI was identified in the checked records. We retain the textbook, FAO manual and soil dataset because they serve distinct purposes, and label their status rather than claiming every reference is a peer-reviewed DOI-bearing article. We have not substituted arXiv DOIs or invented DOIs to fill gaps.
-
-Verification links: [ICLR 2016 accepted papers](https://iclr.cc/archive/www/2016.html); [PMLR review expectations](https://proceedings.mlr.press/faq.html); [AAAI peer-review statement](https://ojs.aaai.org/index.php/AAAI/about); [CSIRO publishing policies](https://connectsci.au/an/pages/publishing-policies); [CSIRO maize article and publication history](https://connectsci.au/an/article-lookup/doi/10.1071/ea06094); [Pereira et al. author-institution record](https://researchportal.ulisboa.pt/en/publications/standard-single-and-basal-crop-coefficients-for-field-crops-updat/); [Malone et al. published version](https://researchonline.jcu.edu.au/94095/1/94095.pdf); [SLGA DataCite record](https://api.datacite.org/dois/10.25919/4jwj-na34). These links verify provenance and status; they are not additional scientific evidence for our numerical choices.
-
-## Appendix: reproducible planning benchmark
-
-<details>
-<summary>Environment prototype and timing script used for Section 8.9</summary>
-
 This code is retained to make the planning measurement inspectable. It implements the nominal training-season environment only; it is not the final notebook, scenario suite or an RL-agent implementation. Save the code as `kyabram_runtime_check.py` and run it against the audited JSON:
 
 ```bash
